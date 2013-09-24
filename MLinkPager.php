@@ -23,6 +23,7 @@ class MLinkPager extends CLinkPager
 	public $showLastPage = false;
 	public $showFirstButton = true;
 	public $showLastButton = true;
+	public $showDivider = true;
 	public $dividerCssClass = 'divider';
 	public $firstDivider = '...';
 	public $lastDivider = '...';
@@ -59,8 +60,8 @@ class MLinkPager extends CLinkPager
 		if($beginPage+1>1){
 			if($this->showFirstButton)
 				$buttons[]=$this->createPageButton(1,0,self::CSS_INTERNAL_PAGE,$currentPage>=$pageCount-1,false);
-			if($this->$firstDivider !== false && $beginPage+1>2)
-				$buttons[]='<li class="'.self::CSS_INTERNAL_PAGE.' '.$this->dividerCssClass.'">'.CHtml::tag('span',array(),$this->$firstDivider).'</li>';
+			if($this->showDivider && $this->firstDivider !== false && $beginPage+1>2)
+				$buttons[]='<li class="'.self::CSS_INTERNAL_PAGE.' '.$this->dividerCssClass.'">'.CHtml::tag('span',array(),$this->firstDivider).'</li>';
 		}
 
 		// internal pages
@@ -74,7 +75,7 @@ class MLinkPager extends CLinkPager
 
 		// last page button
 		if($endPage<$pageCount-1){
-			if($this->$lastDivider !== false && $endPage<$pageCount-2)
+			if($this->showDivider && $this->lastDivider !== false && $endPage<$pageCount-2)
 				$buttons[]='<li class="'.self::CSS_INTERNAL_PAGE.'">'.CHtml::tag('span',array(),$pageCount).'</li>';
 			if($this->showLastButton)
 				$buttons[]=$this->createPageButton($pageCount,$pageCount-1,self::CSS_INTERNAL_PAGE,$currentPage>=$pageCount-1,false);
@@ -91,23 +92,6 @@ class MLinkPager extends CLinkPager
 			$buttons[]=$this->createPageButton($this->lastPageLabel,$pageCount-1,self::CSS_LAST_PAGE,$currentPage>=$pageCount-1,false);
 
 		return $buttons;
-	}
-
-	/**
-	 * Creates a page button.
-	 * You may override this method to customize the page buttons.
-	 * @param string $label the text label for the button
-	 * @param integer $page the page number
-	 * @param string $class the CSS class for the page button.
-	 * @param boolean $hidden whether this page button is visible
-	 * @param boolean $selected whether this page button is selected
-	 * @return string the generated button
-	 */
-	protected function createPageButton($label,$page,$class,$hidden,$selected)
-	{
-		if($hidden || $selected)
-			$class.=' '.($hidden ? $this->hiddenPageCssClass : $this->selectedPageCssClass);
-		return '<li class="'.$class.'">'.CHtml::link($label,$this->createPageUrl($page)).'</li>';
 	}
 
 }

@@ -12,7 +12,7 @@
  *     [first][prev][1]...[128][129][130][131][132][next][last]
  *
  * @version 0.1 24.09.2013
- * @author webmaxx
+ * @author webmaxx <webmaxx@webmaxx.name>
  */
 class MLinkPager extends CLinkPager
 {

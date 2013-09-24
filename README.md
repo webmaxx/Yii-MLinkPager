@@ -1,0 +1,4 @@
+Yii-MLinkPager
+==============
+
+MLinkPager widget

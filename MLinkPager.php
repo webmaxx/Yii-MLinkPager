@@ -76,7 +76,7 @@ class MLinkPager extends CLinkPager
 		// last page button
 		if($endPage<$pageCount-1){
 			if($this->showDivider && $this->lastDivider !== false && $endPage<$pageCount-2)
-				$buttons[]='<li class="'.self::CSS_INTERNAL_PAGE.'">'.CHtml::tag('span',array(),$pageCount).'</li>';
+				$buttons[]='<li class="'.self::CSS_INTERNAL_PAGE.'">'.CHtml::tag('span',array(),$this->lastDivider).'</li>';
 			if($this->showLastButton)
 				$buttons[]=$this->createPageButton($pageCount,$pageCount-1,self::CSS_INTERNAL_PAGE,$currentPage>=$pageCount-1,false);
 		}
